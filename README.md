@@ -18,22 +18,30 @@ Apps used on Winos 10
 
 ### Setup
 - Install Cygwin with development tools (for what it's good for)
-- Swift on Windows [installation](https://www.swift.org/getting-started/) (according to *Traditional Installation' section)
+- Swift on Windows [installation](https://www.swift.org/getting-started/) (according to *Traditional Installation* section)
 - GitHub repository initialization
+
   ```
   git init MetalRT
   cd MetalRT
-  
+
   swift package init
   ```
   In first line of `Package.swift` change Swift version from 5.5 to 5.3, the version supported by Swift Playgrounds 4.
+
   ```
   // swift-tools-version:5.3
   ...
   ```
   ```
+  # set up SSH key if needed
+
   git add -A
   git push origin main
+
+  # tag required to load package with SP4
+  git tag -a 0.1.0 -m 'initial commit'
+  git push origin 0.1.0
   ```
 
 ### Which file for what
