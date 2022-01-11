@@ -34,11 +34,27 @@ Apps used on Winos 10
   ...
   ```
   ```
-  # set up SSH key if needed
-  ssh-keygen -t ed25519 -C <mail adress> -f ~/.ssh/<key file>
-  chmod 400 ~/.ssh/<key file>
-  eval "$(ssh-agent -s)"
-  ssh-add ~/.ssh/<key file>
+  # on Winos generate SSH key (optional)
+  # ssh-keygen -t ed25519 -C iuergen.schuck@gmail.com -f ~/.ssh/github.com.MetalRT
+  # chmod 400 ~/.ssh/github.com.MetalRT
+
+  # on https://github.com set up repository
+  # - create SSH key (optional)
+  # - paste ~/.ssh/github.com.MetalRT.pub
+
+  # on Winos clone repository
+  git clone https://github.com/otabuzzman/MetalRT
+  cd MetalRT
+
+  #  set remote URL
+  git remote add origin https://github.com/otabuzzman/MetalRT.git
+
+  # set remote URL with SSH (optional)
+  # git remote add origin git@github.com:otabuzzman/MetalRT.git
+
+  # enable SSH key usage for session
+  # eval "$(ssh-agent -s)"
+  # ssh-add ~/.ssh/github.com.MetalRT
 
   git add -A
   git push origin main
@@ -52,3 +68,10 @@ Apps used on Winos 10
 |File|Comment|
 |:---|:------|
 |`Object.swift`|A class to read in a single scene object from a Waveform OBJ file.|
+
+### Findings
+- Using `MTLPrimitiveType point` for `renderEncoder.drawIndexedPrimitives.type` yields kind of *bricks* whereas `line` and `triangle` work.
+- No `.metal` file support in SP4. Metal Shader Language (MSL) code via `String` class in Swift source files (e.g. ending on `.metal.swift`) works for SP4 playgrounds and apps. The latter allows MSL files as resources. File suffixes must have three characters (e.g. `.msl`). Otherwise (e.g. when using `.metal` suffix) SP4 will report an unknown resource error on app open.
+- Full URL of repository including `.git` required by package import in a SP4 app.
+- Opening source files from imported packages yields various compiler errors. App will not run as long as the file is open but work when the file is closed again.
+- Removing resource files will only make them disappear in the file browser, not on storage.
