@@ -1,8 +1,9 @@
 import MetalKit
+import ModelIO
 
 public class Object {
-    var _mtkMesh: MTKMesh? // backed var read-only access pattern
-    public var mtkMesh: MTKMesh? { get { return _mtkMesh } }
+    var _mtkMesh: [MTKMesh]? // backed var read-only access pattern
+    public var mtkMesh: [MTKMesh]? { get { return _mtkMesh } }
     
     public init(wavefront: URL?, bufferAllocator: MTKMeshBufferAllocator!) {
         let mdlVertDesc = MDLVertexDescriptor()
@@ -17,6 +18,10 @@ public class Object {
             vertexDescriptor: mdlVertDesc,
             bufferAllocator: bufferAllocator)
         let mdlMesh = mdlAsset.object(at: 0) as! MDLMesh
-        _mtkMesh = try? MTKMesh(mesh: mdlMesh, device: bufferAllocator.device)
+        do {
+            (_, _mtkMesh) = try MTKMesh.newMeshes(asset: mdlAsset, device: bufferAllocator.device)
+        } catch {
+            _mtkMesh = []
+        }
     }
 }
