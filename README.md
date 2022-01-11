@@ -14,7 +14,7 @@ Apps used on Winos 10
 - [Swift on Windows](https://www.swift.org/blog/swift-on-windows/) 5.5
 
 ### Concept
-[Metal](https://developer.apple.com/metal/) is a compute shader (and more) API that utilizes GPUs in Apple devices. The [OptiX port](https://github.com/otabuzzman/RTXplay/tree/main/optx) (RTWO) of RTOW uses GPUs on NVIDIA graphic cards. The obvious idea was a port of RTWO to iOS. Sounds simple but the devil's in the details: Swift instead of C/C++, Playgrounds instead of an IDE, and working on tablet instead of PC to name just a few. The approach was to explore the new concepts one at a time.
+[Metal](https://developer.apple.com/metal/) is a compute shader (and more) API that utilizes GPUs in Apple devices. The [OptiX port](https://github.com/otabuzzman/RTXplay/tree/main/optx) (RTWO) of RTOW uses GPUs on NVIDIA graphic cards. The obvious idea was a port of RTWO to iOS though bearing some challenges: Swift instead of C/C++, Playgrounds instead of an IDE, and working on a tablet instead of PC name a few. The approach was to explore the new concepts one at a time.
 
 ### Setup
 - Install Cygwin with development tools (for what it's good for)
@@ -35,6 +35,10 @@ Apps used on Winos 10
   ```
   ```
   # set up SSH key if needed
+  ssh-keygen -t ed25519 -C <mail adress> -f ~/.ssh/<key file>
+  chmod 400 ~/.ssh/<key file>
+  eval "$(ssh-agent -s)"
+  ssh-add ~/.ssh/<key file>
 
   git add -A
   git push origin main
