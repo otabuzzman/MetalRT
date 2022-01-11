@@ -1,7 +1,7 @@
 # MetalRT
 Ray tracing with Metal. The lab aims to get Peter Shirley's ray tracer from his mini-book [Ray Tracing in one weekend](https://github.com/RayTracing/raytracing.github.io/) (RTOW) with Metal up and running.
 
-Due to the lack of Xcode capable equipment development happened on an iPad Pro using Swift Playgrounds 4 and to a limited extent with [Swift on Windows](https://www.swift.org/blog/swift-on-windows/).
+Due to the lack of Xcode capable equipment development happened on an iPad Pro using Swift Playgrounds 4 (SP4) and to a limited extent with [Swift on Windows](https://www.swift.org/blog/swift-on-windows/).
 
 ### Tools
 Apps used on iPad
