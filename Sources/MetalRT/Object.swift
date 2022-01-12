@@ -17,7 +17,6 @@ public class Object {
             url: wavefront,
             vertexDescriptor: mdlVertDesc,
             bufferAllocator: bufferAllocator)
-        let mdlMesh = mdlAsset.object(at: 0) as! MDLMesh
         do {
             // discard MDLMesh from returned tuple
             (_, _mtkMesh) = try MTKMesh.newMeshes(asset: mdlAsset, device: bufferAllocator.device)

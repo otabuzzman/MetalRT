@@ -2,11 +2,11 @@ import MetalKit
 
 class MRTRenderer: NSObject, MTKViewDelegate {
     let mtkView: MTKView
-    let device:  MTLDevice
+    let device: MTLDevice
     
     init(mtkView: MTKView, device: MTLDevice) {
-        self.mtkView = view
-        self.device  = device
+        self.mtkView = mtkView
+        self.device = device
         
         super.init()
     }
