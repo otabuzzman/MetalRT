@@ -1,6 +1,6 @@
 import MetalKit
 
-class MRTRenderer: NSObject, MTKViewDelegate {
+public class MRTRenderer: NSObject, MTKViewDelegate {
     let mtkView: MTKView
     let device: MTLDevice
     

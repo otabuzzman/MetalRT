@@ -3,7 +3,7 @@ import SwiftUI
 
 // https://www.hackingwithswift.com/quick-start/swiftui/how-to-wrap-a-custom-uiview-for-swiftui
 
-struct MRTView: UIViewRepresentable {
+￼public struct MRTView: UIViewRepresentable {
     var device: MTLDevice!
     var mtkView: MTKView!
     var mrtRenderer: MRTRenderer!
