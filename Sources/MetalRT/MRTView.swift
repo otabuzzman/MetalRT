@@ -3,7 +3,7 @@ import SwiftUI
 
 // https://www.hackingwithswift.com/quick-start/swiftui/how-to-wrap-a-custom-uiview-for-swiftui
 
-￼public struct MRTView: UIViewRepresentable {
+public struct MRTView: UIViewRepresentable {
     var device: MTLDevice!
     var mtkView: MTKView!
     var mrtRenderer: MRTRenderer!
@@ -25,4 +25,3 @@ import SwiftUI
     public func updateUIView(_ uiView: MTKView, context: Context) {
     }
 }
-
