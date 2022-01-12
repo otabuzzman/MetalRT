@@ -4,7 +4,7 @@ public class MRTRenderer: NSObject, MTKViewDelegate {
     let mtkView: MTKView
     let device: MTLDevice
     
-    init(mtkView: MTKView, device: MTLDevice) {
+    public init(mtkView: MTKView, device: MTLDevice) {
         self.mtkView = mtkView
         self.device = device
         

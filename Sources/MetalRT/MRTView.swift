@@ -8,7 +8,7 @@ public struct MRTView: UIViewRepresentable {
     var mtkView: MTKView!
     var mrtRenderer: MRTRenderer!
     
-    init() {
+    public init() {
         device = MTLCreateSystemDefaultDevice()!
         
         mtkView = MTKView(frame: .zero, device: device)
