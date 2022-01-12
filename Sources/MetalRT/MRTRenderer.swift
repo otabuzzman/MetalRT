@@ -11,9 +11,9 @@ public class MRTRenderer: NSObject, MTKViewDelegate {
         super.init()
     }
     
-    func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
+    public func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
     }
     
-    func draw(in view: MTKView) {
+    public func draw(in view: MTKView) {
     }
 }

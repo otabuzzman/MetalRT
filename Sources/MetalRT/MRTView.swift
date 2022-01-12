@@ -18,11 +18,11 @@ import SwiftUI
         mtkView.delegate = mrtRenderer
     }
     
-    func makeUIView(context: Context) -> MTKView {
+    public func makeUIView(context: Context) -> MTKView {
         return mtkView
     }
     
-    func updateUIView(_ uiView: MTKView, context: Context) {
+    public func updateUIView(_ uiView: MTKView, context: Context) {
     }
 }
 
