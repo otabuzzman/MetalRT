@@ -19,6 +19,7 @@ public class Object {
             bufferAllocator: bufferAllocator)
         let mdlMesh = mdlAsset.object(at: 0) as! MDLMesh
         do {
+            // discard MDLMesh from returned tuple
             (_, _mtkMesh) = try MTKMesh.newMeshes(asset: mdlAsset, device: bufferAllocator.device)
         } catch {
             _mtkMesh = []
