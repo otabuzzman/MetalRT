@@ -129,7 +129,7 @@ Apps used on Winos 10
       }
 
       func tuneMRTView() {
-          renderer = try? RtwmRenderer(view: self, device: device!)
+          renderer = try? RtwmRenderer(view: self)
       }
   }
   ```
