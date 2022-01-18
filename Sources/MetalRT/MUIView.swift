@@ -1,7 +1,7 @@
 import MetalKit
 import SwiftUI
 
-struct MUIView<Content>: UIViewRepresentable where Content: MRTView {
+public ￼struct MUIView<Content>: UIViewRepresentable where Content: MRTView {
     var mrtView: Content
     
     init(closure: () -> Content) {
