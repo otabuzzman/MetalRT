@@ -4,7 +4,7 @@ import SwiftUI
 public struct MUIView<Content>: UIViewRepresentable where Content: MRTView {
     var mrtView: Content
     
-    init(closure: () -> Content) {
+    public init(closure: () -> Content) {
         mrtView = closure()
     }
     
