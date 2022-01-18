@@ -7,7 +7,7 @@ Due to the lack of Xcode capable equipment development happened on an iPad Pro u
 Apps used on iPad
 - [Swift Playgrounds 4](https://apps.apple.com/de/app/swift-playgrounds/id908519492)
 - [Working Copy](https://workingcopyapp.com/)
-- [Textastic](https://www.textasticapp.com/)
+- [Textastic](https://www.textasticapp.com/) (can edit SP4 `.swiftpm` files)
 - [GitHub](https://apps.apple.com/us/app/github/id1477376905)
 
 Apps used on Winos 10
