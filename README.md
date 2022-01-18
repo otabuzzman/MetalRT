@@ -77,9 +77,7 @@ Apps used on Winos 10
 - Setup new app in SP4
 - Delete `*.swift` files
 - Add `MetalRT` package
-- Create `Rtwm*.swift` files as given below
-
-**RtwmMain.swift**
+- Create file `RtwmMain.swift` :
   ```
   import SwiftUI
   import MetalRT
@@ -101,8 +99,7 @@ Apps used on Winos 10
       }
   }
   ```
-
-**RtwmView.swift**
+- Create file `RtwmView.swift` :
   ```
   import MetalKit
   import MetalRT
@@ -134,31 +131,32 @@ Apps used on Winos 10
       }
   }
   ```
-
-**RtwmRenderer.swift**
+- Create file `RtwmRenderer.swift` :
   ```
   import MetalKit
   import MetalRT
 
-  public final class RtwmRenderer: NSObject, MRTRenderer {
-      public var mtlLibrary: [MTLLibrary]!
+  final class RtwmRenderer: NSObject, MRTRenderer {
+      var mtlLibrary: [MTLLibrary]!
 
-      public func makeAccelerationStructure() {
+      func makeAccelerationStructure() {
       }
 
-      public func makePipelineState() {
+      func makePipelineState() {
       }
 
-      public func makeCommandQueue() {
+      func makeCommandQueue() {
       }
 
-      public func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
+      func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
       }
 
-      public func draw(in view: MTKView) {
+      func draw(in view: MTKView) {
       }
   }
   ```
+- Run app and check result :<br>
+  A white display with no errors.
 
 ### Findings
 - Using `MTLPrimitiveType point` for `renderEncoder.drawIndexedPrimitives.type` yields kind of *bricks* whereas `line` and `triangle` work.
