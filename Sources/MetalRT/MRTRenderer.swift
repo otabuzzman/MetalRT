@@ -4,7 +4,7 @@ public protocol MRTRenderer: NSObject, MTKViewDelegate {
     var mtlLibrary: [MTLLibrary]! { get set }
     
     init()
-    init(view: MRTView, device: MTLDevice) throws
+    init(view: MRTView) throws
     
     func makeAccelerationStructure()
     func makePipelineState()
@@ -17,12 +17,12 @@ public protocol MRTRenderer: NSObject, MTKViewDelegate {
 }
 
 public extension MRTRenderer {
-    init(view: MRTView, device: MTLDevice) throws {
+    init(view: MRTView) throws {
         self.init()
         
         view.delegate = self
         
-        guard let mtlLibrary = device.makeLibrary(fromResourcesWithSuffixes: ["msl"]) else {
+        guard let mtlLibrary = view.device?.makeLibrary(fromResourcesWithSuffixes: ["msl"]) else {
             throw MRTError.noShaderSources
         }
         self.mtlLibrary = mtlLibrary
