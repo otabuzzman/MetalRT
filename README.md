@@ -75,11 +75,11 @@ Apps used on Winos 10
 
 ### Usage
 - Setup new app in SP4
-- Create `Rtwm*.swift` files with contents given below
-- Delete `ContentView.swift` and `MyApp.swift`files
+- Delete `*.swift` files
 - Add `MetalRT` package
+- Create `Rtwm*.swift` files as given below
 
-  **Rtwm.swift**
+**RtwmMain.swift**
   ```
   import SwiftUI
   import MetalRT
@@ -93,7 +93,7 @@ Apps used on Winos 10
   }
 
   @main
-  struct MyApp: App {
+  struct RtwmMain: App {
       var body: some Scene {
           WindowGroup {
               ContentView()
@@ -102,7 +102,7 @@ Apps used on Winos 10
   }
   ```
 
-  **RtwmView.swift**
+**RtwmView.swift**
   ```
   import MetalKit
   import MetalRT
@@ -135,7 +135,7 @@ Apps used on Winos 10
   }
   ```
 
-  **RtwmRenderer.swift**
+**RtwmRenderer.swift**
   ```
   import MetalKit
   import MetalRT
