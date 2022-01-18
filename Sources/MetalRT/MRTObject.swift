@@ -1,11 +1,10 @@
 import MetalKit
 import ModelIO
 
-public class Object {
-    var _mtkMesh: [MTKMesh]? // backed var read-only access pattern
-    public var mtkMesh: [MTKMesh]? { get { return _mtkMesh } }
+public class MRTObject {
+    public private(set) var mtkMesh: [MTKMesh]?
     
-    public init(wavefront: URL?, bufferAllocator: MTKMeshBufferAllocator!) {
+    public init(wavefront: URL, bufferAllocator: MTKMeshBufferAllocator) {
         let mdlVertDesc = MDLVertexDescriptor()
         mdlVertDesc.attributes[0] = MDLVertexAttribute(
             name: MDLVertexAttributePosition,
@@ -19,9 +18,9 @@ public class Object {
             bufferAllocator: bufferAllocator)
         do {
             // discard MDLMesh from returned tuple
-            (_, _mtkMesh) = try MTKMesh.newMeshes(asset: mdlAsset, device: bufferAllocator.device)
+            (_, mtkMesh) = try MTKMesh.newMeshes(asset: mdlAsset, device: bufferAllocator.device)
         } catch {
-            _mtkMesh = []
+            mtkMesh = []
         }
     }
 }

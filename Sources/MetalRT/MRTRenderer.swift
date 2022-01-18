@@ -1,19 +1,40 @@
 import MetalKit
 
-public class MRTRenderer: NSObject, MTKViewDelegate {
-    let mtkView: MTKView
-    let device: MTLDevice
+public protocol MRTRenderer: NSObject, MTKViewDelegate {
+    var mtlLibrary: [MTLLibrary]! { get set }
     
-    public init(mtkView: MTKView, device: MTLDevice) {
-        self.mtkView = mtkView
-        self.device = device
+    init()
+    init(view: MRTView, device: MTLDevice) throws
+    
+    func makeAccelerationStructure()
+    func makePipelineState()
+    func makeCommandQueue()
+    
+    func makeFunction(fromMTLLibraries libraries: [MTLLibrary], name: String) -> MTLFunction?
+    
+    func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize)
+    func draw(in view: MTKView)
+}
+
+public extension MRTRenderer {
+    init(view: MRTView, device: MTLDevice) throws {
+        self.init()
         
-        super.init()
+        view.delegate = self
+        
+        guard let mtlLibrary = device.makeLibrary(fromResourcesWithSuffixes: ["msl"]) else {
+            throw MRTError.noShaderSources
+        }
+        self.mtlLibrary = mtlLibrary
     }
     
-    public func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
-    }
-    
-    public func draw(in view: MTKView) {
+    func makeFunction(fromMTLLibraries libraries: [MTLLibrary], name: String) -> MTLFunction? {
+        for mtlLibrary in libraries {
+            if mtlLibrary.functionNames.contains(name) {
+                return mtlLibrary.makeFunction(name: name)
+            }
+        }
+        
+        return nil
     }
 }
