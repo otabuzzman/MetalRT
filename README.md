@@ -77,7 +77,7 @@ Apps used on Winos 10
 - Setup new app in SP4
 - Delete `*.swift` files
 - Add `MetalRT` package
-- Create file `RtwmMain.swift` :
+- Create file `RtwmMain.swift` :<br>
   ```
   import SwiftUI
   import MetalRT
@@ -99,7 +99,7 @@ Apps used on Winos 10
       }
   }
   ```
-- Create file `RtwmView.swift` :
+- Create file `RtwmView.swift` :<br>
   ```
   import MetalKit
   import MetalRT
@@ -131,7 +131,7 @@ Apps used on Winos 10
       }
   }
   ```
-- Create file `RtwmRenderer.swift` :
+- Create file `RtwmRenderer.swift` :<br>
   ```
   import MetalKit
   import MetalRT
