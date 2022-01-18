@@ -67,7 +67,98 @@ Apps used on Winos 10
 ### Which file for what
 |File|Comment|
 |:---|:------|
-|`Object.swift`|A class to read in a single scene object from a Waveform OBJ file.|
+|`MUIView.swift`|A SwiftUI wrapper for MRTView.|
+|`MRTView.swift`|A Metal ray tracer view protocol derived from [MTKView](https://developer.apple.com/documentation/metalkit/mtkview).|
+|`MRTRenderer.swift`|A Metal ray tracing renderer protocol.|
+|`MRTObject.swift`|A class to read a Waveform OBJ file.|
+|`MTLDevice.swift`|A protocol extension for [MTLDevice](https://developer.apple.com/documentation/metal/mtldevice) to read Metal files from resource fiels in SP4.|
+
+### Usage
+- Setup new app in SP4
+- Create `Rtwm*.swift` files with contents given below
+- Delete `ContentView.swift` and `MyApp.swift`files
+- Add `MetalRT` package
+
+  **Rtwm.swift**
+  ```
+  import SwiftUI
+  import MetalRT
+
+  struct ContentView: View {
+      var body: some View {
+          MUIView {
+              RtwmView()
+          }
+      }
+  }
+
+  @main
+  struct MyApp: App {
+      var body: some Scene {
+          WindowGroup {
+              ContentView()
+          }
+      }
+  }
+  ```
+
+  **RtwmView.swift**
+  ```
+  import MetalKit
+  import MetalRT
+
+  class RtwmView: MTKView, MRTView {
+      var renderer: MRTRenderer!
+
+      required init() {
+          guard let device = MTLCreateSystemDefaultDevice() else {
+              let error: Error = MRTError.noDefaultDevice
+              fatalError(error.localizedDescription)
+          }
+          super.init(frame: .zero, device: device)
+
+          tune()
+      }
+
+      required init(coder: NSCoder) {
+          super.init(coder: coder)
+      }
+
+      func tuneMTKView() {
+          colorPixelFormat = .bgra8Unorm
+          clearColor = MTLClearColor(red: 0.3, green: 0.1, blue: 0.2, alpha: 1.0)
+      }
+
+      func tuneMRTView() {
+          renderer = try? RtwmRenderer(view: self, device: device!)
+      }
+  }
+  ```
+
+  **RtwmRenderer.swift**
+  ```
+  import MetalKit
+  import MetalRT
+
+  public final class RtwmRenderer: NSObject, MRTRenderer {
+      public var mtlLibrary: [MTLLibrary]!
+
+      public func makeAccelerationStructure() {
+      }
+
+      public func makePipelineState() {
+      }
+
+      public func makeCommandQueue() {
+      }
+
+      public func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
+      }
+
+      public func draw(in view: MTKView) {
+      }
+  }
+  ```
 
 ### Findings
 - Using `MTLPrimitiveType point` for `renderEncoder.drawIndexedPrimitives.type` yields kind of *bricks* whereas `line` and `triangle` work.
