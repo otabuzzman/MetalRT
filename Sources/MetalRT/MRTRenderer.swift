@@ -7,8 +7,7 @@ public protocol MRTRenderer: NSObject, MTKViewDelegate {
     init(view: MRTView) throws
     
     func makeAccelerationStructure()
-    func makePipelineState()
-    func makeCommandQueue()
+    func makeShaderPipeline()
     
     func makeFunction(fromMTLLibraries libraries: [MTLLibrary], name: String) -> MTLFunction?
     
@@ -26,6 +25,11 @@ public extension MRTRenderer {
             throw MRTError.noShaderSources
         }
         self.mtlLibrary = mtlLibrary
+        
+        makeAccelerationStructure()
+        makeShaderPipeline()
+        
+        mtkView(view, drawableSizeWillChange: view.frame.size)
     }
     
     func makeFunction(fromMTLLibraries libraries: [MTLLibrary], name: String) -> MTLFunction? {

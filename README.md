@@ -145,10 +145,7 @@ Apps used on Winos 10
       func makeAccelerationStructure() {
       }
 
-      func makePipelineState() {
-      }
-
-      func makeCommandQueue() {
+      func makeShaderPipeline() {
       }
 
       func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
