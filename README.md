@@ -1,7 +1,9 @@
 # MetalRT
-Ray tracing with Metal. The lab aims to get Peter Shirley's ray tracer from his mini-book [Ray Tracing in one weekend](https://github.com/RayTracing/raytracing.github.io/) (RTOW) with Metal up and running.
+Ray tracing with Metal. The lab aims to get Peter Shirley's ray tracer from his mini-book [Ray Tracing in one weekend](https://github.com/RayTracing/raytracing.github.io/) (RTOW) with [Metal](https://developer.apple.com/metal/) up and running.
 
-Due to the lack of Xcode capable equipment development happened on an iPad Pro using Swift Playgrounds 4 (SP4) and to a limited extent with [Swift on Windows](https://www.swift.org/blog/swift-on-windows/).
+Metal is a compute shader (and more) API that utilizes GPUs in Apple devices. The [OptiX port](https://github.com/otabuzzman/RTXplay/tree/main/optx) (RTWO) of RTOW uses GPUs on NVIDIA graphic cards. The obvious idea was a port of RTWO to make use of Metal instead of OptiX.
+
+Due to the lack of an Apple device capable of running Xcode development took place on an iPad Pro using Swift Playgrounds 4 (SP4) and to an extent with [Swift on Windows](https://www.swift.org/blog/swift-on-windows/).
 
 ### Tools
 Apps used on iPad
@@ -13,45 +15,40 @@ Apps used on iPad
 Apps used on Winos 10
 - [Swift on Windows](https://www.swift.org/blog/swift-on-windows/) 5.5
 
-### Concept
-[Metal](https://developer.apple.com/metal/) is a compute shader (and more) API that utilizes GPUs in Apple devices. The [OptiX port](https://github.com/otabuzzman/RTXplay/tree/main/optx) (RTWO) of RTOW uses GPUs on NVIDIA graphic cards. The obvious idea was a port of RTWO to iOS though bearing some challenges: Swift instead of C/C++, Playgrounds instead of an IDE, and working on a tablet instead of PC name a few. The approach was to explore the new concepts one at a time.
-
 ### Setup
-- Install Cygwin with development tools (for what it's good for)
-- Swift on Windows [installation](https://www.swift.org/getting-started/) (according to *Traditional Installation* section)
-- GitHub repository initialization
+- Install [Cygwin](https://cygwin.com/install.html) with development tools (for what it's good for)
+- [Install Swift on Windows](https://www.swift.org/getting-started/) (according to *Traditional Installation* section)
+- Create repository on GitHub (default settings)
+- Clone repository from GitHub
 
+  **Cygwin command prompt (bash)**
   ```
-  git init MetalRT
+  git clone https://github.com/otabuzzman/MetalRT
+  # use SSH (optional)
+  # git clone git://github.com/otabuzzman/MetalRT
+
+  cd MetalRT
+  ```
+- Create SSH keys (optional)
+  ```
+  ssh-keygen -t ed25519 -C iuergen.schuck@gmail.com -f ~/.ssh/github.com.MetalRT
+  chmod 400 ~/.ssh/github.com.MetalRT
+  ```
+- Swift package initialization
+
+  **Winos command prompt (CMD)**
+  ```
   cd MetalRT
 
   swift package init
+
+  rem check
+  swift build
   ```
-  In first line of `Package.swift` change Swift version from 5.5 to 5.3, the version supported by Swift Playgrounds 4.
+- Sync package with GitHub
 
+  **Cygwin command prompt (bash)**
   ```
-  // swift-tools-version:5.3
-  ...
-  ```
-  ```
-  # on Winos generate SSH key (optional)
-  # ssh-keygen -t ed25519 -C iuergen.schuck@gmail.com -f ~/.ssh/github.com.MetalRT
-  # chmod 400 ~/.ssh/github.com.MetalRT
-
-  # on https://github.com set up repository
-  # - create SSH key (optional)
-  # - paste ~/.ssh/github.com.MetalRT.pub
-
-  # on Winos clone repository
-  git clone https://github.com/otabuzzman/MetalRT
-  cd MetalRT
-
-  #  set remote URL
-  git remote add origin https://github.com/otabuzzman/MetalRT.git
-
-  # set remote URL with SSH (optional)
-  # git remote add origin git@github.com:otabuzzman/MetalRT.git
-
   # enable SSH key usage for session
   # eval "$(ssh-agent -s)"
   # ssh-add ~/.ssh/github.com.MetalRT
