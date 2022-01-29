@@ -161,3 +161,4 @@ Apps used on Winos 10
 - Full URL of repository including `.git` required by package import in a SP4 app.
 - Opening source files from imported packages yields various compiler errors. App will not run as long as the file is open but work when the file is closed again.
 - Removing resource files will only make them disappear in the file browser, not on storage.
+- Package name in app settings must not match name of a loaded package.
