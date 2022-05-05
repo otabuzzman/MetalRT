@@ -1,9 +1,5 @@
-# MetalRT
+# MetalRTOW
 Ray tracing with Metal. The lab aims to get Peter Shirley's ray tracer from his mini-book [Ray Tracing in one weekend](https://github.com/RayTracing/raytracing.github.io/) (RTOW) with [Metal](https://developer.apple.com/metal/) up and running.
-
-Metal is a compute shader (and more) API that utilizes GPUs in Apple devices. The [OptiX port](https://github.com/otabuzzman/RTXplay/tree/main/optx) (RTWO) of RTOW uses GPUs on NVIDIA graphic cards. The obvious idea was a port of RTWO to make use of Metal instead of OptiX.
-
-Due to the lack of an Apple device capable of running Xcode development took place on an iPad Pro using Swift Playgrounds 4 (SP4) and to an extent with [Swift on Windows](https://www.swift.org/blog/swift-on-windows/).
 
 ### Tools
 Apps used on iPad
@@ -13,7 +9,7 @@ Apps used on iPad
 - [GitHub](https://apps.apple.com/us/app/github/id1477376905)
 
 Apps used on Winos 10
-- [Swift on Windows](https://www.swift.org/blog/swift-on-windows/) 5.5
+- [Swift on Windows](https://www.swift.org/blog/swift-on-windows/) 5.6
 
 ### Setup
 - Install [Cygwin](https://cygwin.com/install.html) with development tools (for what it's good for)
@@ -23,22 +19,22 @@ Apps used on Winos 10
 
   **Cygwin command prompt (bash)**
   ```
-  git clone https://github.com/otabuzzman/MetalRT
+  git clone https://github.com/otabuzzman/MetalRTOW
   # use SSH (optional)
-  # git clone git://github.com/otabuzzman/MetalRT
+  # git clone git://github.com/otabuzzman/MetalRTOW
 
-  cd MetalRT
+  cd MetalRTOW
   ```
 - Create SSH keys (optional)
   ```
-  ssh-keygen -t ed25519 -C iuergen.schuck@gmail.com -f ~/.ssh/github.com.MetalRT
-  chmod 400 ~/.ssh/github.com.MetalRT
+  ssh-keygen -t ed25519 -C iuergen.schuck@gmail.com -f ~/.ssh/github.com.MetalRTOW
+  chmod 400 ~/.ssh/github.com.MetalRTOW
   ```
 - Swift package initialization
 
   **Winos command prompt (CMD)**
   ```
-  cd MetalRT
+  cd MetalRTOW
 
   swift package init
 
@@ -51,7 +47,7 @@ Apps used on Winos 10
   ```
   # enable SSH key usage for session
   # eval "$(ssh-agent -s)"
-  # ssh-add ~/.ssh/github.com.MetalRT
+  # ssh-add ~/.ssh/github.com.MetalRTOW
 
   git add -A
   git push origin main
@@ -73,12 +69,12 @@ Apps used on Winos 10
 ### Usage
 - Setup new app in SP4
 - Delete `*.swift` files
-- Add `MetalRT` package
-- Create file `RtwmMain.swift` :
+- Add `MetalRTOW` package
+- Create file `MetalRTOW.swift` :
 
   ```
   import SwiftUI
-  import MetalRT
+  import MetalRTOW
 
   struct ContentView: View {
       var body: some View {
@@ -89,7 +85,7 @@ Apps used on Winos 10
   }
 
   @main
-  struct RtwmMain: App {
+  struct MyApp: App {
       var body: some Scene {
           WindowGroup {
               ContentView()
@@ -101,7 +97,7 @@ Apps used on Winos 10
 
   ```
   import MetalKit
-  import MetalRT
+  import MetalRTOW
 
   class RtwmView: MTKView, MRTView {
       var renderer: MRTRenderer!
@@ -134,7 +130,7 @@ Apps used on Winos 10
 
   ```
   import MetalKit
-  import MetalRT
+  import MetalRTOW
 
   final class RtwmRenderer: NSObject, MRTRenderer {
       var mtlLibrary: [MTLLibrary]!
@@ -159,6 +155,6 @@ Apps used on Winos 10
 - Using `MTLPrimitiveType point` for `renderEncoder.drawIndexedPrimitives.type` yields kind of *bricks* whereas `line` and `triangle` work.
 - No `.metal` file support in SP4. Metal Shader Language (MSL) code via `String` class in Swift source files (e.g. ending on `.metal.swift`) works for SP4 playgrounds and apps. The latter allows MSL files as resources. File suffixes must have three characters (e.g. `.msl`). Otherwise (e.g. when using `.metal` suffix) SP4 will report an unknown resource error on app open.
 - Full URL of repository including `.git` required by package import in a SP4 app.
-- Opening source files from imported packages yields various compiler errors. App will not run as long as the file is open but work when the file is closed again.
+- Opening source files from imported packages yields various compiler errors. App will not run as long as the file is open but works when the file is closed.
 - Removing resource files will only make them disappear in the file browser, not on storage.
 - Package name in app settings must not match name of a loaded package.
