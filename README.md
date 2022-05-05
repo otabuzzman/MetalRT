@@ -65,6 +65,7 @@ Apps used on Winos 10
 |`MRTRenderer.swift`|A Metal ray tracing renderer protocol.|
 |`MRTObject.swift`|A class to read a Waveform OBJ file.|
 |`MTLDevice.swift`|A protocol extension for [MTLDevice](https://developer.apple.com/documentation/metal/mtldevice) to read Metal files from resource files in SP4.|
+|`MRTError.swift`|Error exceptions.|
 
 ### Usage
 - Setup new app in SP4
