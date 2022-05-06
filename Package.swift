@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "MetalRTOWOW",
+    name: "MetalRTOW",
     platforms: [
         .iOS(.v15),
     ],
@@ -24,8 +24,5 @@ let package = Package(
         .target(
             name: "MetalRTOW",
             dependencies: []),
-        .testTarget(
-            name: "MetalRTOWTests",
-            dependencies: ["MetalRTOW"]),
     ]
 )
