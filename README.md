@@ -68,7 +68,8 @@ Apps used on Winos 10
 |`MRTError.swift`|Error exceptions.|
 
 ### Usage
-- Setup new app in SP4
+- Setup new app in SP4<br>
+  Name must differ from _MetalRTOW_
 - Delete `*.swift` files
 - Add `MetalRTOW` package
 - Create file `MetalRTOW.swift` :
@@ -154,8 +155,7 @@ Apps used on Winos 10
 
 ### Findings
 - Using `MTLPrimitiveType point` for `renderEncoder.drawIndexedPrimitives.type` yields kind of *bricks* whereas `line` and `triangle` work.
-- No `.metal` file support in SP4. Metal Shader Language (MSL) code via `String` class in Swift source files (e.g. ending on `.metal.swift`) works for SP4 playgrounds and apps. The latter allows MSL files as resources. File suffixes must have three characters (e.g. `.msl`). Otherwise (e.g. when using `.metal` suffix) SP4 will report an unknown resource error on app open.
+- No `.metal` file support in SP4. Metal Shader Language (MSL) code via `String` class in Swift source files (e.g. ending on `.metal.swift`) ok for SP4 playgrounds and apps. The latter allows MSL files as resources. File suffixes must have three characters (e.g. `.msl`). Otherwise (e.g. when using `.metal` suffix) SP4 will report an unknown resource error on app open.
 - Full URL of repository including `.git` required by package import in a SP4 app.
 - Opening source files from imported packages yields various compiler errors. App will not run as long as the file is open but works when the file is closed.
 - Removing resource files will only make them disappear in the file browser, not on storage.
-- Package name in app settings must not match name of a loaded package.
