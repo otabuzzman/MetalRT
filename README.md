@@ -81,7 +81,7 @@ Apps used on Winos 10
   struct ContentView: View {
       var body: some View {
           MUIView {
-              RtwmView()
+              MRTView()
           }
       }
   }
@@ -95,13 +95,13 @@ Apps used on Winos 10
       }
   }
   ```
-- Create file `RtwmView.swift` :
+- Create file `MRTView.swift` :
 
   ```
   import MetalKit
   import MetalRT
 
-  class RtwmView: MTKView, MRTView {
+  class MRTView: MTKView, MRTView {
       var renderer: MRTRenderer!
 
       required init() {
@@ -128,13 +128,13 @@ Apps used on Winos 10
       }
   }
   ```
-- Create file `RtwmRenderer.swift` :
+- Create file `MRTRenderer.swift` :
 
   ```
   import MetalKit
   import MetalRT
 
-  final class RtwmRenderer: NSObject, MRTRenderer {
+  final class MRTRenderer: NSObject, MRTRenderer {
       var mtlLibrary: [MTLLibrary]!
 
       func makeAccelerationStructure() {
