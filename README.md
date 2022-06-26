@@ -72,7 +72,7 @@ Apps used on Winos 10
   Name must differ from _MetalRT_
 - Delete `*.swift` files
 - Add `MetalRT` package
-- Create file `MetalRT.swift` :
+- Create file `MetalHW.swift` :
 
   ```
   import SwiftUI
@@ -81,7 +81,7 @@ Apps used on Winos 10
   struct ContentView: View {
       var body: some View {
           MUIView {
-              MRTView()
+              MHWView()
           }
       }
   }
@@ -95,13 +95,13 @@ Apps used on Winos 10
       }
   }
   ```
-- Create file `MRTView.swift` :
+- Create file `MHWView.swift` :
 
   ```
   import MetalKit
   import MetalRT
 
-  class MRTView: MTKView, MRTView {
+  class MHWView: MTKView, MRTView {
       var renderer: MRTRenderer!
 
       required init() {
@@ -124,17 +124,17 @@ Apps used on Winos 10
       }
 
       func tuneMRTView() {
-          renderer = try? RtwmRenderer(view: self)
+          renderer = try? MHWRenderer(view: self)
       }
   }
   ```
-- Create file `MRTRenderer.swift` :
+- Create file `MHWRenderer.swift` :
 
   ```
   import MetalKit
   import MetalRT
 
-  final class MRTRenderer: NSObject, MRTRenderer {
+  final class MHWRenderer: NSObject, MRTRenderer {
       var mtlLibrary: [MTLLibrary]!
 
       func makeAccelerationStructure() {
