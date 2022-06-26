@@ -1,5 +1,5 @@
-# MetalRTOW
-Ray tracing with Metal. The lab aims to get Peter Shirley's ray tracer from his mini-book [Ray Tracing in one weekend](https://github.com/RayTracing/raytracing.github.io/) (RTOW) with [Metal](https://developer.apple.com/metal/) up and running.
+# MetalRT
+Ray tracing with Metal. A lab to explore various ray tracing implementations with [Metal](https://developer.apple.com/metal/).
 
 ### Tools
 Apps used on iPad
@@ -19,22 +19,22 @@ Apps used on Winos 10
 
   **Cygwin command prompt (bash)**
   ```
-  git clone https://github.com/otabuzzman/MetalRTOW
+  git clone https://github.com/otabuzzman/MetalRT
   # use SSH (optional)
-  # git clone git://github.com/otabuzzman/MetalRTOW
+  # git clone git://github.com/otabuzzman/MetalRT
 
-  cd MetalRTOW
+  cd MetalRT
   ```
 - Create SSH keys (optional)
   ```
-  ssh-keygen -t ed25519 -C iuergen.schuck@gmail.com -f ~/.ssh/github.com.MetalRTOW
-  chmod 400 ~/.ssh/github.com.MetalRTOW
+  ssh-keygen -t ed25519 -C iuergen.schuck@gmail.com -f ~/.ssh/github.com.MetalRT
+  chmod 400 ~/.ssh/github.com.MetalRT
   ```
 - Swift package initialization
 
   **Winos command prompt (CMD)**
   ```
-  cd MetalRTOW
+  cd MetalRT
 
   swift package init
 
@@ -47,7 +47,7 @@ Apps used on Winos 10
   ```
   # enable SSH key usage for session
   # eval "$(ssh-agent -s)"
-  # ssh-add ~/.ssh/github.com.MetalRTOW
+  # ssh-add ~/.ssh/github.com.MetalRT
 
   git add -A
   git push origin main
@@ -69,14 +69,14 @@ Apps used on Winos 10
 
 ### Usage
 - Setup new app in SP4<br>
-  Name must differ from _MetalRTOW_
+  Name must differ from _MetalRT_
 - Delete `*.swift` files
-- Add `MetalRTOW` package
-- Create file `MetalRTOW.swift` :
+- Add `MetalRT` package
+- Create file `MetalRT.swift` :
 
   ```
   import SwiftUI
-  import MetalRTOW
+  import MetalRT
 
   struct ContentView: View {
       var body: some View {
@@ -99,7 +99,7 @@ Apps used on Winos 10
 
   ```
   import MetalKit
-  import MetalRTOW
+  import MetalRT
 
   class RtwmView: MTKView, MRTView {
       var renderer: MRTRenderer!
@@ -132,7 +132,7 @@ Apps used on Winos 10
 
   ```
   import MetalKit
-  import MetalRTOW
+  import MetalRT
 
   final class RtwmRenderer: NSObject, MRTRenderer {
       var mtlLibrary: [MTLLibrary]!
@@ -140,7 +140,7 @@ Apps used on Winos 10
       func makeAccelerationStructure() {
       }
 
-      func makeShaderPipeline() {
+      func makeGraphicsPipeline() {
       }
 
       func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
