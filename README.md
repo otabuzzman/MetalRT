@@ -70,8 +70,8 @@ Apps used on Winos 10
 ### Usage
 - Setup new app in SP4<br>
   Name must differ from _MetalRT_
-- Delete `*.swift` files
 - Add `MetalRT` package
+- Delete `*.swift` files
 - Create file `MetalHW.swift` :
 
   ```
