@@ -2,7 +2,7 @@
 Ray tracing with Metal. A lab to explore various ray tracing implementations with [Metal](https://developer.apple.com/metal/).
 
 ## Usage
-- Setup new app in SP4
+- Setup new app in Swift Playgrounds 4
 - Delete `*.swift` files
 - Delete predefined *.swift files in app
 - Add `shader.msl` files with SP4 as resource
@@ -15,7 +15,7 @@ Ray tracing with Metal. A lab to explore various ray tracing implementations wit
 
 ### Tools
 Apps used on iPad
-- [Swift Playgrounds 4](https://apps.apple.com/de/app/swift-playgrounds/id908519492)
+- [Swift Playgrounds 4](https://apps.apple.com/de/app/swift-playgrounds/id908519492) (SP4)
 - [Working Copy](https://workingcopyapp.com/)
 - [Textastic](https://www.textasticapp.com/) (can edit SP4 `.swiftpm` files)
 - [GitHub](https://apps.apple.com/us/app/github/id1477376905)
