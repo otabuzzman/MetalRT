@@ -6,15 +6,11 @@ Ray tracing with Metal. A lab to explore various ray tracing implementations wit
 - Delete `*.swift` files
 - Delete predefined *.swift files in app
 - Add `shader.msl` files with SP4 as resource
-- Create file `MetalHW.swift` :
-
-  ```
-  ```
 
 ## Result
 <img src="triangle.gif" alt="triangle" width="512"/>
 
---
+---
 
 ### Tools
 Apps used on iPad
@@ -84,7 +80,7 @@ Apps used on Winos 10
 |`XPU.swift`|Types shared between CPU and GPU.|
 |`Exception.swift`|Error exceptions.|
 |`Extension.swift`|SwiftUI classes and protocols extensions.|
-|`shader.msl`|Simple pass-through vertex and vragment shader functions.|
+|`shader.msl`|Simple pass-through vertex and fragment shader functions.|
 
 ### Findings
 - No `.metal` file support in SP4. Metal Shader Language (MSL) code via `String` class in Swift source files (e.g. ending on `.metal.swift`) ok for SP4 playgrounds and apps. The latter allows MSL files as resources. File suffixes must have three characters (e.g. `.msl`). Otherwise (e.g. when using `.metal` suffix) SP4 will report an unknown resource error on app open.
