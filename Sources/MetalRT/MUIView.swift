@@ -1,17 +1,22 @@
 import MetalKit
 import SwiftUI
 
-public struct MUIView<Content>: UIViewRepresentable where Content: MRTView {
-    var mrtView: Content
+class MUIView: MTKView {
+    var renderer: MUIRenderer!
     
-    public init(closure: () -> Content) {
-        mrtView = closure()
+    init(configure: (MUIView) -> ()) {
+        guard
+            let device = MTLCreateSystemDefaultDevice()
+        else {
+            let error: MUIError = .noDefaultDevice
+            fatalError(error.localizedDescription)
+        }
+        super.init(frame: .zero, device: device)
+        
+        configure(self)
     }
     
-    public func makeUIView(context: Context) -> Content {
-        return mrtView
-    }
-    
-    public func updateUIView(_ uiView: Content, context: Context) {
+    required init(coder: NSCoder) {
+        super.init(coder: coder)
     }
 }

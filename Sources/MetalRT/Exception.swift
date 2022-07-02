@@ -1,11 +1,11 @@
 import Foundation
 
-public enum MRTError: Error {
+public enum MUIError: Error {
     case noDefaultDevice
     case noShaderSources
 }
 
-extension MRTError: LocalizedError {
+extension MUIError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .noDefaultDevice:

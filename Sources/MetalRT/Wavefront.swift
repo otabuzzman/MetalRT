@@ -1,10 +1,10 @@
 import MetalKit
 import ModelIO
 
-public class MRTObject {
+public class Wavefront {
     public private(set) var mtkMesh: [MTKMesh]?
     
-    public init(wavefront: URL, bufferAllocator: MTKMeshBufferAllocator) {
+    public init(geometry url: URL, bufferAllocator: MTKMeshBufferAllocator) {
         let mdlVertDesc = MDLVertexDescriptor()
         mdlVertDesc.attributes[0] = MDLVertexAttribute(
             name: MDLVertexAttributePosition,
@@ -13,7 +13,7 @@ public class MRTObject {
             bufferIndex: 0)
         mdlVertDesc.layouts[0] = MDLVertexBufferLayout(stride: MemoryLayout<SIMD3<Float>>.stride)
         let mdlAsset = MDLAsset(
-            url: wavefront,
+            url: url,
             vertexDescriptor: mdlVertDesc,
             bufferAllocator: bufferAllocator)
         do {

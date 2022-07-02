@@ -1,6 +1,21 @@
 # MetalRT
 Ray tracing with Metal. A lab to explore various ray tracing implementations with [Metal](https://developer.apple.com/metal/).
 
+## Usage
+- Setup new app in SP4
+- Delete `*.swift` files
+- Delete predefined *.swift files in app
+- Add `shader.msl` files with SP4 as resource
+- Create file `MetalHW.swift` :
+
+  ```
+  ```
+
+## Result
+<img src="triangle.gif" alt="triangle" width="512"/>
+
+--
+
 ### Tools
 Apps used on iPad
 - [Swift Playgrounds 4](https://apps.apple.com/de/app/swift-playgrounds/id908519492)
@@ -9,6 +24,7 @@ Apps used on iPad
 - [GitHub](https://apps.apple.com/us/app/github/id1477376905)
 
 Apps used on Winos 10
+- [Cygwin](https://cygwin.com/install.html) with development tools
 - [Swift on Windows](https://www.swift.org/blog/swift-on-windows/) 5.6
 
 ### Setup
@@ -60,98 +76,15 @@ Apps used on Winos 10
 ### Which file for what
 |File|Comment|
 |:---|:------|
-|`MUIView.swift`|A SwiftUI wrapper for MRTView.|
-|`MRTView.swift`|A Metal ray tracer view protocol derived from [MTKView](https://developer.apple.com/documentation/metalkit/mtkview).|
-|`MRTRenderer.swift`|A Metal ray tracing renderer protocol.|
-|`MRTObject.swift`|A class to read a Waveform OBJ file.|
-|`MTLDevice.swift`|A protocol extension for [MTLDevice](https://developer.apple.com/documentation/metal/mtldevice) to read Metal files from resource files in SP4.|
-|`MRTError.swift`|Error exceptions.|
-
-### Usage
-- Setup new app in SP4<br>
-  Name must differ from _MetalRT_
-- Add `MetalRT` package
-- Delete `*.swift` files
-- Create file `MetalHW.swift` :
-
-  ```
-  import SwiftUI
-  import MetalRT
-
-  struct ContentView: View {
-      var body: some View {
-          MUIView {
-              MHWView()
-          }
-      }
-  }
-
-  @main
-  struct MyApp: App {
-      var body: some Scene {
-          WindowGroup {
-              ContentView()
-          }
-      }
-  }
-  ```
-- Create file `MHWView.swift` :
-
-  ```
-  import MetalKit
-  import MetalRT
-
-  class MHWView: MTKView, MRTView {
-      var renderer: MRTRenderer!
-
-      required init() {
-          guard let device = MTLCreateSystemDefaultDevice() else {
-              let error: Error = MRTError.noDefaultDevice
-              fatalError(error.localizedDescription)
-          }
-          super.init(frame: .zero, device: device)
-
-          tune()
-      }
-
-      required init(coder: NSCoder) {
-          super.init(coder: coder)
-      }
-
-      func tuneMTKView() {
-          colorPixelFormat = .bgra8Unorm
-          clearColor = MTLClearColor(red: 0.3, green: 0.1, blue: 0.2, alpha: 1.0)
-      }
-
-      func tuneMRTView() {
-          renderer = try? MHWRenderer(view: self)
-      }
-  }
-  ```
-- Create file `MHWRenderer.swift` :
-
-  ```
-  import MetalKit
-  import MetalRT
-
-  final class MHWRenderer: NSObject, MRTRenderer {
-      var mtlLibrary: [MTLLibrary]!
-
-      func makeAccelerationStructure() {
-      }
-
-      func makeGraphicsPipeline() {
-      }
-
-      func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
-      }
-
-      func draw(in view: MTKView) {
-      }
-  }
-  ```
-- Run app and check result :<br>
-  A white display with no errors.
+|`CUIView.swift`|A SwiftUI wrapper for custom UIViews.|
+|`MUIView.swift`|A custom MTKView.|
+|`MUIRenderer.swift`|A boilerplate renderer to be used with MUIView.|
+|`MHWRenderer.swift`|A _Hello World_ renderer sub-classed from MUIRenderer.|
+|`Wavefront.swift`|A class to read a Wavefront OBJ file.|
+|`XPU.swift`|Types shared between CPU and GPU.|
+|`Exception.swift`|Error exceptions.|
+|`Extension.swift`|SwiftUI classes and protocols extensions.|
+|`shader.msl`|Simple pass-through vertex and vragment shader functions.|
 
 ### Findings
 - No `.metal` file support in SP4. Metal Shader Language (MSL) code via `String` class in Swift source files (e.g. ending on `.metal.swift`) ok for SP4 playgrounds and apps. The latter allows MSL files as resources. File suffixes must have three characters (e.g. `.msl`). Otherwise (e.g. when using `.metal` suffix) SP4 will report an unknown resource error on app open.

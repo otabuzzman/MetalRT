@@ -1,0 +1,33 @@
+#include <metal_stdlib>
+
+using namespace metal;
+
+// globals (XPU)
+struct Vertex {
+    float2 coord;
+    float4 color;
+};
+
+struct Uniform {
+    float brightness;
+};
+
+// locals (GPU)
+struct V {
+    float4 coord [[ position ]];
+    float4 color;
+};
+
+vertex V vertexFunction(const device Vertex *v [[ buffer(0) ]], uint id [[ vertex_id  ]]) {
+    Vertex vi = v[id];
+	V vo;
+
+    vo.coord = float4(vi.coord,0,1);
+    vo.color = vi.color;
+
+    return vo;
+}
+
+fragment float4 fragmentFunction(V v [[ stage_in ]], constant Uniform &uni [[ buffer(0) ]]) {
+	return float4(uni.brightness*v.color.rgb, v.color.a);
+}
