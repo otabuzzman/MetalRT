@@ -6,6 +6,7 @@ Ray tracing with Metal. A lab to explore various ray tracing implementations wit
 - Delete `*.swift` files
 - Delete predefined *.swift files in app
 - Add `shader.msl` files with SP4 as resource
+- Run app
 
 ## Result
 <img src="triangle.gif" alt="triangle" width="512"/>
